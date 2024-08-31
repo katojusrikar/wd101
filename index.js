@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const email = document.getElementById("email");
   email.addEventListener("input", () => validatemail(email));
 
-  document.addEventListener("DOMContentLoaded", function () {
+  function ny() {
     const dobInput = document.getElementById("dob");
     const today = new Date();
     const minAge = 18;
@@ -21,7 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     dobInput.min = minDate.toISOString().split("T")[0];
     dobInput.max = maxDate.toISOString().split("T")[0];
-  });
+  }
+  ny();
 
   const validatemail = (element) => {
     const value = element.value;
