@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const maxDate = new Date(
     today.getFullYear() - minAge,
     today.getMonth(),
-    today.getDate()
+    today.getDate() + 1
   );
 
   dobInput.min = minDate.toISOString().split("T")[0];
