@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const dobInput = document.getElementById("dob");
     const today = new Date();
     const minAge = 18;
-    const maxAge = 56;
+    const maxAge = 55;
 
     const minDate = new Date(
       today.getFullYear() - maxAge,
@@ -64,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     localStorage.setItem("users", JSON.stringify(userEntries));
     displayEntries();
+    userForm.reset();
   };
 
   userForm.addEventListener("submit", saveUserForm);
