@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 <<<<<<< HEAD
+<<<<<<< HEAD
   const dobInput = document.getElementById("dob");
 <<<<<<< HEAD
 =======
@@ -33,6 +34,33 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   ny();
 
+=======
+  const email = document.getElementById("email");
+  email.addEventListener("input", () => validatemail(email));
+
+  function ny() {
+    const dobInput = document.getElementById("dob");
+    const today = new Date();
+    const minAge = 18;
+    const maxAge = 55;
+
+    const minDate = new Date(
+      today.getFullYear() - maxAge,
+      today.getMonth(),
+      today.getDate() + 1
+    );
+    const maxDate = new Date(
+      today.getFullYear() - minAge,
+      today.getMonth(),
+      today.getDate() + 1
+    );
+
+    dobInput.min = minDate.toISOString().split("T")[0];
+    dobInput.max = maxDate.toISOString().split("T")[0];
+  }
+  ny();
+
+>>>>>>> parent of 6187d3e (New)
   const validatemail = (element) => {
     const value = element.value;
     let m = "";
@@ -110,6 +138,7 @@ document.addEventListener("DOMContentLoaded", function () {
       .join("\n");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     userEntriesContainer.innerHTML = `
       <table class="table-auto w-full">
         <thead>
@@ -174,6 +203,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   displayEntries(); // Load entries on initial page load
 =======
+=======
+>>>>>>> parent of 6187d3e (New)
     const table = `<table class="table table-striped"><thead>
       <tr>
         <th>Name</th> &nbsp
@@ -188,5 +219,8 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   displayEntries();
+<<<<<<< HEAD
+>>>>>>> parent of 6187d3e (New)
+=======
 >>>>>>> parent of 6187d3e (New)
 });
