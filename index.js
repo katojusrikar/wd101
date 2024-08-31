@@ -1,46 +1,97 @@
 document.addEventListener("DOMContentLoaded", function () {
+<<<<<<< HEAD
   const dobInput = document.getElementById("dob");
 <<<<<<< HEAD
 =======
   const today = new Date();
   const minAge = 18;
   const maxAge = 55; // Correct age capping logic
+=======
+  const email = document.getElementById("email");
+  email.addEventListener("input", () => validatemail(email));
 
-  const minDate = new Date(
-    today.getFullYear() - maxAge,
-    today.getMonth(),
-    today.getDate() + 1
-  );
-  const maxDate = new Date(
-    today.getFullYear() - minAge,
-    today.getMonth(),
-    today.getDate()
-  );
+  function ny() {
+    const dobInput = document.getElementById("dob");
+    const today = new Date();
+    const minAge = 18;
+    const maxAge = 55;
+>>>>>>> parent of 6187d3e (New)
 
-  dobInput.min = minDate.toISOString().split("T")[0];
-  dobInput.max = maxDate.toISOString().split("T")[0];
+    const minDate = new Date(
+      today.getFullYear() - maxAge,
+      today.getMonth(),
+      today.getDate() + 1
+    );
+    const maxDate = new Date(
+      today.getFullYear() - minAge,
+      today.getMonth(),
+      today.getDate() + 1
+    );
 
-  const validateEmail = (element) => {
+    dobInput.min = minDate.toISOString().split("T")[0];
+    dobInput.max = maxDate.toISOString().split("T")[0];
+  }
+  ny();
+
+  const validatemail = (element) => {
     const value = element.value;
-    let message = "";
+    let m = "";
 
     if (value === "") {
-      message = "Email cannot be blank.";
+      m = "Email cann't be blank.";
     } else if (!/@/.test(value)) {
-      message = "Email must contain '@'.";
+      m = "Email must contain '@'.";
     } else if (!/\./.test(value.split("@")[1])) {
-      message = "Email must contain '.' after '@'.";
+      m = "Email must contain '.' after '@'.";
     } else {
-      message = "";
+      m = "";
     }
 
-    element.setCustomValidity(message);
+    element.setCustomValidity(m);
     element.reportValidity();
   };
 
 >>>>>>> parent of 3136ced (New)
   const userForm = document.getElementById("user-form");
+<<<<<<< HEAD
   const userEntriesContainer = document.getElementById("user-entries");
+=======
+
+  const saveUserForm = (event) => {
+    event.preventDefault();
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const dob = document.getElementById("dob").value;
+    const termsandconditions = document.getElementById("acceptTerms").checked;
+
+    const entry = {
+      name,
+      email,
+      password,
+      dob,
+      termsandconditions,
+    };
+
+    let userEntries = retrieveEntries();
+    userEntries.push(entry);
+
+    localStorage.setItem("users", JSON.stringify(userEntries));
+    displayEntries();
+    userForm.reset();
+  };
+
+  userForm.addEventListener("submit", saveUserForm);
+
+  const retrieveEntries = () => {
+    let entries = localStorage.getItem("users");
+    if (entries) {
+      return JSON.parse(entries);
+    } else {
+      return [];
+    }
+  };
+>>>>>>> parent of 6187d3e (New)
 
   const displayEntries = () => {
     const entries = retrieveEntries();
@@ -58,6 +109,7 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .join("\n");
 
+<<<<<<< HEAD
     userEntriesContainer.innerHTML = `
       <table class="table-auto w-full">
         <thead>
@@ -121,4 +173,20 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   displayEntries(); // Load entries on initial page load
+=======
+    const table = `<table class="table table-striped"><thead>
+      <tr>
+        <th>Name</th> &nbsp
+        <th>Email</th> &nbsp
+        <th>Password</th> &nbsp
+        <th>Dob</th> &nbsp
+        <th>Accepted Terms?</th> &nbsp
+      </tr>
+    </thead><tbody>${tableEntries}</tbody></table>`;
+
+    document.getElementById("user-entries").innerHTML = table;
+  };
+
+  displayEntries();
+>>>>>>> parent of 6187d3e (New)
 });
