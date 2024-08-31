@@ -1,44 +1,41 @@
 document.addEventListener("DOMContentLoaded", function () {
   const email = document.getElementById("email");
-  email.addEventListener("input", () => validatemail(email));
+  email.addEventListener("input", () => validateEmail(email));
 
-  function ny() {
-    const dobInput = document.getElementById("dob");
-    const today = new Date();
-    const minAge = 18;
-    const maxAge = 55;
+  const dobInput = document.getElementById("dob");
+  const today = new Date();
+  const minAge = 18;
+  const maxAge = 55; // Correct age capping logic
 
-    const minDate = new Date(
-      today.getFullYear() - maxAge,
-      today.getMonth(),
-      today.getDate() + 1
-    );
-    const maxDate = new Date(
-      today.getFullYear() - minAge,
-      today.getMonth(),
-      today.getDate() + 1
-    );
+  const minDate = new Date(
+    today.getFullYear() - maxAge,
+    today.getMonth(),
+    today.getDate() + 1
+  );
+  const maxDate = new Date(
+    today.getFullYear() - minAge,
+    today.getMonth(),
+    today.getDate()
+  );
 
-    dobInput.min = minDate.toISOString().split("T")[0];
-    dobInput.max = maxDate.toISOString().split("T")[0];
-  }
-  ny();
+  dobInput.min = minDate.toISOString().split("T")[0];
+  dobInput.max = maxDate.toISOString().split("T")[0];
 
-  const validatemail = (element) => {
+  const validateEmail = (element) => {
     const value = element.value;
-    let m = "";
+    let message = "";
 
     if (value === "") {
-      m = "Email cann't be blank.";
+      message = "Email cannot be blank.";
     } else if (!/@/.test(value)) {
-      m = "Email must contain '@'.";
+      message = "Email must contain '@'.";
     } else if (!/\./.test(value.split("@")[1])) {
-      m = "Email must contain '.' after '@'.";
+      message = "Email must contain '.' after '@'.";
     } else {
-      m = "";
+      message = "";
     }
 
-    element.setCustomValidity(m);
+    element.setCustomValidity(message);
     element.reportValidity();
   };
 
@@ -65,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     localStorage.setItem("users", JSON.stringify(userEntries));
     displayEntries();
-    userForm.reset();
+    userForm.reset(); // Resets the form to allow multiple entries
   };
 
   userForm.addEventListener("submit", saveUserForm);
@@ -95,18 +92,21 @@ document.addEventListener("DOMContentLoaded", function () {
       })
       .join("\n");
 
-    const table = `<table class="table table-striped"><thead>
-      <tr>
-        <th>Name</th> &nbsp
-        <th>Email</th> &nbsp
-        <th>Password</th> &nbsp
-        <th>Dob</th> &nbsp
-        <th>Accepted Terms?</th> &nbsp
-      </tr>
-    </thead><tbody>${tableEntries}</tbody></table>`;
+    const table = `<table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Password</th>
+          <th>Dob</th>
+          <th>Accepted Terms?</th>
+        </tr>
+      </thead>
+      <tbody>${tableEntries}</tbody>
+    </table>`;
 
     document.getElementById("user-entries").innerHTML = table;
   };
 
-  displayEntries();
+  displayEntries(); // Initializes table with existing entries on page load
 });
