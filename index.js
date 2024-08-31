@@ -85,7 +85,7 @@ const displayEntries = () => {
       const passwordc = `<td class='border px-4 py-2'>${entry.password}</td>`;
       const dobc = `<td class='border px-4 py-2'>${entry.dob}</td>`;
       const acceptTermsc = `<td class='border px-4 py-2'>${
-        entry.termscond ? "Yes" : "No"
+        entry.termsandconditions ? "Yes" : "No"
       }</td>`;
 
       return `<tr>${namec}${emailc}${passwordc}${dobc}${acceptTermsc}</tr>`;
