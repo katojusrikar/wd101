@@ -1,5 +1,44 @@
 document.addEventListener("DOMContentLoaded", function () {
   const dobInput = document.getElementById("dob");
+<<<<<<< HEAD
+=======
+  const today = new Date();
+  const minAge = 18;
+  const maxAge = 55; // Correct age capping logic
+
+  const minDate = new Date(
+    today.getFullYear() - maxAge,
+    today.getMonth(),
+    today.getDate() + 1
+  );
+  const maxDate = new Date(
+    today.getFullYear() - minAge,
+    today.getMonth(),
+    today.getDate()
+  );
+
+  dobInput.min = minDate.toISOString().split("T")[0];
+  dobInput.max = maxDate.toISOString().split("T")[0];
+
+  const validateEmail = (element) => {
+    const value = element.value;
+    let message = "";
+
+    if (value === "") {
+      message = "Email cannot be blank.";
+    } else if (!/@/.test(value)) {
+      message = "Email must contain '@'.";
+    } else if (!/\./.test(value.split("@")[1])) {
+      message = "Email must contain '.' after '@'.";
+    } else {
+      message = "";
+    }
+
+    element.setCustomValidity(message);
+    element.reportValidity();
+  };
+
+>>>>>>> parent of 3136ced (New)
   const userForm = document.getElementById("user-form");
   const userEntriesContainer = document.getElementById("user-entries");
 
