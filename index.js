@@ -1,99 +1,99 @@
-displayEntries();
-const email = document.getElementById("email");
-email.addEventListener("input", () => validatemail(email));
-
 document.addEventListener("DOMContentLoaded", function () {
-  const dobInput = document.getElementById("dob");
-  const today = new Date();
-  const minAge = 18;
-  const maxAge = 56;
+  const email = document.getElementById("email");
+  email.addEventListener("input", () => validatemail(email));
 
-  const minDate = new Date(
-    today.getFullYear() - maxAge,
-    today.getMonth(),
-    today.getDate() + 1
-  );
-  const maxDate = new Date(
-    today.getFullYear() - minAge,
-    today.getMonth(),
-    today.getDate() + 1
-  );
+  document.addEventListener("DOMContentLoaded", function () {
+    const dobInput = document.getElementById("dob");
+    const today = new Date();
+    const minAge = 18;
+    const maxAge = 56;
 
-  dobInput.min = minDate.toISOString().split("T")[0];
-  dobInput.max = maxDate.toISOString().split("T")[0];
-});
+    const minDate = new Date(
+      today.getFullYear() - maxAge,
+      today.getMonth(),
+      today.getDate() + 1
+    );
+    const maxDate = new Date(
+      today.getFullYear() - minAge,
+      today.getMonth(),
+      today.getDate() + 1
+    );
 
-const validatemail = (element) => {
-  const value = element.value;
-  let m = "";
+    dobInput.min = minDate.toISOString().split("T")[0];
+    dobInput.max = maxDate.toISOString().split("T")[0];
+  });
 
-  if (value === "") {
-    m = "Email cann't be blank.";
-  } else if (!/@/.test(value)) {
-    m = "Email must contain '@'.";
-  } else if (!/\./.test(value.split("@")[1])) {
-    m = "Email must contain '.' after '@'.";
-  } else {
-    m = "";
-  }
+  const validatemail = (element) => {
+    const value = element.value;
+    let m = "";
 
-  element.setCustomValidity(m);
-  element.reportValidity();
-};
+    if (value === "") {
+      m = "Email cann't be blank.";
+    } else if (!/@/.test(value)) {
+      m = "Email must contain '@'.";
+    } else if (!/\./.test(value.split("@")[1])) {
+      m = "Email must contain '.' after '@'.";
+    } else {
+      m = "";
+    }
 
-const userForm = document.getElementById("user-form");
-
-const saveUserForm = (event) => {
-  event.preventDefault();
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const dob = document.getElementById("dob").value;
-  const termsandconditions = document.getElementById("acceptTerms").checked;
-
-  const entry = {
-    name,
-    email,
-    password,
-    dob,
-    termsandconditions,
+    element.setCustomValidity(m);
+    element.reportValidity();
   };
 
-  let userEntries = retrieveEntries();
-  userEntries.push(entry);
+  const userForm = document.getElementById("user-form");
 
-  localStorage.setItem("users", JSON.stringify(userEntries));
-  displayEntries();
-};
+  const saveUserForm = (event) => {
+    event.preventDefault();
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const dob = document.getElementById("dob").value;
+    const termsandconditions = document.getElementById("acceptTerms").checked;
 
-userForm.addEventListener("submit", saveUserForm);
+    const entry = {
+      name,
+      email,
+      password,
+      dob,
+      termsandconditions,
+    };
 
-const retrieveEntries = () => {
-  let entries = localStorage.getItem("users");
-  if (entries) {
-    return JSON.parse(entries);
-  } else {
-    return [];
-  }
-};
+    let userEntries = retrieveEntries();
+    userEntries.push(entry);
 
-const displayEntries = () => {
-  const entries = retrieveEntries();
-  const tableEntries = entries
-    .map((entry) => {
-      const namec = `<td class='border px-4 py-2'>${entry.name}</td>`;
-      const emailc = `<td class='border px-4 py-2'>${entry.email}</td>`;
-      const passwordc = `<td class='border px-4 py-2'>${entry.password}</td>`;
-      const dobc = `<td class='border px-4 py-2'>${entry.dob}</td>`;
-      const acceptTermsc = `<td class='border px-4 py-2'>${
-        entry.termsandconditions ? "Yes" : "No"
-      }</td>`;
+    localStorage.setItem("users", JSON.stringify(userEntries));
+    displayEntries();
+  };
 
-      return `<tr>${namec}${emailc}${passwordc}${dobc}${acceptTermsc}</tr>`;
-    })
-    .join("\n");
+  userForm.addEventListener("submit", saveUserForm);
 
-  const table = `<table class="table table-striped"><thead>
+  const retrieveEntries = () => {
+    let entries = localStorage.getItem("users");
+    if (entries) {
+      return JSON.parse(entries);
+    } else {
+      return [];
+    }
+  };
+
+  const displayEntries = () => {
+    const entries = retrieveEntries();
+    const tableEntries = entries
+      .map((entry) => {
+        const namec = `<td class='border px-4 py-2'>${entry.name}</td>`;
+        const emailc = `<td class='border px-4 py-2'>${entry.email}</td>`;
+        const passwordc = `<td class='border px-4 py-2'>${entry.password}</td>`;
+        const dobc = `<td class='border px-4 py-2'>${entry.dob}</td>`;
+        const acceptTermsc = `<td class='border px-4 py-2'>${
+          entry.termsandconditions ? "Yes" : "No"
+        }</td>`;
+
+        return `<tr>${namec}${emailc}${passwordc}${dobc}${acceptTermsc}</tr>`;
+      })
+      .join("\n");
+
+    const table = `<table class="table table-striped"><thead>
       <tr>
         <th>Name</th> &nbsp
         <th>Email</th> &nbsp
@@ -103,7 +103,8 @@ const displayEntries = () => {
       </tr>
     </thead><tbody>${tableEntries}</tbody></table>`;
 
-  document.getElementById("user-entries").innerHTML = table;
-};
+    document.getElementById("user-entries").innerHTML = table;
+  };
 
-displayEntries();
+  displayEntries();
+});
