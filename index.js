@@ -1,3 +1,4 @@
+displayEntries();
 const email = document.getElementById("email");
 email.addEventListener("input", () => validatemail(email));
 
