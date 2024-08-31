@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const passwordc = `<td class='border px-4 py-2'>${entry.password}</td>`;
         const dobc = `<td class='border px-4 py-2'>${entry.dob}</td>`;
         const acceptTermsc = `<td class='border px-4 py-2'>${
-          entry.termsandconditions ? "Yes" : "No"
+          entry.termsandconditions ? "true" : "false"
         }</td>`;
 
         return `<tr>${namec}${emailc}${passwordc}${dobc}${acceptTermsc}</tr>`;
